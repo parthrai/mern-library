@@ -1,4 +1,4 @@
-##Installation steps
+#Installation steps
 `npm install`
 
 # Whenever you create a new project
