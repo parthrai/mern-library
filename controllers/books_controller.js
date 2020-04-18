@@ -1,4 +1,8 @@
 const uuid = require('uuid/v4')
+const { validationResult } = require('express-validator')
+
+const Book = require('../models/book')
+
 
 let DUMMY_DB=[
     {
@@ -39,15 +43,18 @@ function index(req,res,next){
 const show = (req,res,next)=>{
 
     const bookId = req.params.book_id
-    const book = DUMMY_DB.find( b => {
-        return b.id === bookId
+
+    const result = Book.findById(bookId).then((book)=>{
+
+        if(!book){
+            return res.status(404).json({message:"Invalid book id"})
+        }
+
+        return res.status(200).json({book:book.toObject({getters:true})})
+
     })
 
-    if(!book){
-        return res.status(404).json({message:"Invalid book id"})
-    }
 
-    return res.status(200).json({book})
 
 }
 
@@ -76,18 +83,29 @@ const store = (req,res) =>{
     // const title = req.body.title
     // const description = req.body.description
 
+   const error =  validationResult(req)
 
-    const newBook = {
-        id : uuid(),
+    if(!error.isEmpty()){
+
+        return res.status(422).json({message:error})
+    }
+
+    const newBook = new Book({
         name,
         description,
         author
+    })
 
+
+    try{
+        newBook.save()
+    }catch (e) {
+        return res.status(422).json({message:"Data not saved!"})
     }
 
-    DUMMY_DB.push(newBook)
 
-    res.status(201).json({book:newBook})
+
+    return res.status(201).json({book:newBook})
 }
 
 

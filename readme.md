@@ -24,7 +24,9 @@ DELETE --> http://localhost:5000/api/books/1  --> Delete a book with given id
 4.	npm install nodemon --save-dev
 5.  npm install body-parser --save
 6.  npm install uuid --save
-7.	 Create a npm start command for nodemon in package.json file
+7.  npm install express-validator --save
+8.  npm install mongoose --save
+9.	 Create a npm start command for nodemon in package.json file
 "start" : "nodemon app.js"
 
 
