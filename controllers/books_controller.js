@@ -25,23 +25,31 @@ async function index(req,res,next) {
 
 }
 
-const show = (req,res,next)=>{
+const show = async (req,res,next)=> {
 
     const bookId = req.params.book_id
 
-    const result = Book.findById(bookId).then((book)=>{
+    try {
+        const result = await Book.findById(bookId)
 
-        if(!book){
-            return res.status(404).json({message:"Invalid book id"})
-        }
+    } catch (e) {
+        return res.status(422).json({message:"Invalid book id"})
 
-        return res.status(200).json({book:book.toObject({getters:true})})
-
-    })
-
+    }
+    return res.status(200).json({book:book.toObject({getters:true})})
 
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 const  BooksByAuthor = async (req,res,next)=>{
