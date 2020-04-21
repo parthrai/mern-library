@@ -6,8 +6,9 @@ const Author = require('../models/author')
 // Get list of all the authors
 async function index(req,res,next) {
 
+    let authors;
     try{
-        const authors = await Author.find()
+         authors = await Author.find()
 
     }catch (e) {
         return  res.status(417).json({message:e})
@@ -23,8 +24,9 @@ const show = async (req,res,next)=> {
 
     const authorId = req.params.author_id
 
+    let author;
     try {
-        const author = await Author.findById(authorId)
+        author = await Author.findById(authorId)
 
     } catch (e) {
         return res.status(422).json({message:"Invalid author id"})

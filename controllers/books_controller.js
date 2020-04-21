@@ -2,13 +2,14 @@ const uuid = require('uuid/v4')
 const { validationResult } = require('express-validator')
 
 const Book = require('../models/book')
-
+const Author = require('../models/author')
 
 
 async function index(req,res,next) {
 
+    let books;
     try{
-        const books = await Book.find()
+        books = await Book.find()
 
     }catch (e) {
        return  res.status(417).json({message:e})
@@ -49,7 +50,7 @@ const  BooksByAuthor = async (req,res,next)=>{
 
     const authorId = req.params.author_id //a1
 
-    const books = await Book.find({author:authorId});
+    const books = await Book.find({author_id:authorId});
 
     //OLD Code
     //const books = DUMMY_DB.filter( b => b.author === authorId)
@@ -64,15 +65,16 @@ const  BooksByAuthor = async (req,res,next)=>{
 
 const store = async (req,res) =>{
 
-    const {  name, description, author} = req.body //LEFT HAND SIDE IS CALLED OBJECT DESTRUCTURING
+    const {  name, description, author_id} = req.body //LEFT HAND SIDE IS CALLED OBJECT DESTRUCTURING
 
-    // INSTEAD OF ABOVE STEP YOU CAN ALSO DO THIS
+    let author;
+    try{
+      author = await Author.findById(author_id)
 
-    // const id = req.body.id
-    // const title = req.body.title
-    // const description = req.body.description
+    }catch(e){
+        return res.status(500).json({message:e})
 
-
+    }
 
 
    const error =  validationResult(req)
@@ -85,15 +87,19 @@ const store = async (req,res) =>{
     const newBook = new Book({
         name,
         description,
-        author
+        author_id
     })
 
 
     try{
+
+
         await newBook.save()
+        author.books.push(newBook)
+        await author.save()
 
     }catch (e) {
-        return res.status(500).json({message:e})
+        return res.status(500).json({message:"e"})
     }
 
 
@@ -146,21 +152,24 @@ const deleteBook = async (req,res) =>{
 
     const book_id = req.params.book_id
 
+    let book;
     try{
-        const book = await Book.findById(book_id)
+         book = await Book.findById(book_id).populate('author_id')
     }catch (e) {
         return res.status(422).json({message:e})
     }
 
     try{
+
         await book.remove()
+        book.author_id.books.pull(book)
+        await book.author_id.save()
+
+
     }catch (e) {
         return res.status(417).json({message:e})
     }
 
-    //OLD CODE
-
-    // DUMMY_DB = DUMMY_DB.filter( b => b.id !== book_id)
 
 
     res.status(202).json({message:"Book deleted"})
