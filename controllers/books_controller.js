@@ -30,7 +30,7 @@ const show = async (req,res,next)=> {
     const bookId = req.params.book_id
 
     try {
-        const result = await Book.findById(bookId)
+        const book = await Book.findById(bookId)
 
     } catch (e) {
         return res.status(422).json({message:"Invalid book id"})
