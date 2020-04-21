@@ -4,28 +4,6 @@ const { validationResult } = require('express-validator')
 const Book = require('../models/book')
 
 
-let DUMMY_DB=[
-    {
-        id:'b1',
-        name:'Book 1',
-        description: 'some fancy description',
-        author:'a1'
-    },
-    {
-        id:'b2',
-        name:'Second Book',
-        description: 'some fancy description about second book',
-        author:'a1'
-
-    },
-    {
-        id:'b3',
-        name:'Third Book',
-        description: 'some fancy description for b3',
-        author:'a2'
-    }
-
-]
 
 
 // const index = (req,res,next)=>{
@@ -34,11 +12,18 @@ let DUMMY_DB=[
 // }
 
 
-function index(req,res,next){
+async function index(req,res,next) {
 
-    res.status(200).json({books: DUMMY_DB})
+    try{
+        const books = await Book.find()
+
+    }catch (e) {
+       return  res.status(417).json({message:e})
+    }
+
+    res.status(200).json({books})
+
 }
-
 
 const show = (req,res,next)=>{
 
@@ -59,11 +44,14 @@ const show = (req,res,next)=>{
 }
 
 
-const BooksByAuthor = (req,res,next)=>{
+const  BooksByAuthor = async (req,res,next)=>{
 
-    const authorId = req.params.author_id
+    const authorId = req.params.author_id //a1
 
-    const books = DUMMY_DB.filter( b => b.author === authorId)
+    const books = await Book.find({author:authorId});
+
+    //OLD Code
+    //const books = DUMMY_DB.filter( b => b.author === authorId)
 
     if(books.length == 0){
         return res.status(404).json({message:"Invalid author id"})
@@ -73,7 +61,7 @@ const BooksByAuthor = (req,res,next)=>{
 
 }
 
-const store = (req,res) =>{
+const store = async (req,res) =>{
 
     const {  name, description, author} = req.body //LEFT HAND SIDE IS CALLED OBJECT DESTRUCTURING
 
@@ -98,7 +86,7 @@ const store = (req,res) =>{
 
 
     try{
-        newBook.save()
+        await newBook.save()
     }catch (e) {
         return res.status(422).json({message:"Data not saved!"})
     }
@@ -109,28 +97,65 @@ const store = (req,res) =>{
 }
 
 
-const update= (req,res) =>{
+const update= async (req,res) =>{
+
 
     const book_id = req.params.book_id
     const { name,description } = req.body
 
-    const book = DUMMY_DB.find( b => b.id === book_id )
-    const bookIndex = DUMMY_DB.findIndex( b => b.id === book_id)
+    try{
+        const book = await Book.findById(book_id)
+
+    }catch (e) {
+        return res.status(422).json({message:e})
+    }
 
     book.name = name
     book.description = description
 
-    DUMMY_DB[bookIndex] = book
+    try{
+        await book.save()
+
+    }catch (e) {
+        return res.status(417).json({message:e})
+
+    }
+
+
+
+    // OLD CODE WITH DUMMY DB
+
+    // const book = DUMMY_DB.find( b => b.id === book_id )
+    // const bookIndex = DUMMY_DB.findIndex( b => b.id === book_id)
+    //
+    // book.name = name
+    // book.description = description
+    //
+    // DUMMY_DB[bookIndex] = book
 
     res.status(202).json({book})
 }
 
 
-const deleteBook = (req,res) =>{
+const deleteBook = async (req,res) =>{
 
-    const book_id = req.params.book_id //b2
+    const book_id = req.params.book_id
 
-    DUMMY_DB = DUMMY_DB.filter( b => b.id !== book_id)
+    try{
+        const book = await Book.findById(book_id)
+    }catch (e) {
+        return res.status(422).json({message:e})
+    }
+
+    try{
+        await book.remove()
+    }catch (e) {
+        return res.status(417).json({message:e})
+    }
+
+    //OLD CODE
+
+    // DUMMY_DB = DUMMY_DB.filter( b => b.id !== book_id)
 
 
     res.status(202).json({message:"Book deleted"})

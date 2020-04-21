@@ -17,6 +17,7 @@ app.use('/api/books',booksRoutes)
 mongoose.connect("mongodb+srv://test-user:test-pass@cluster0-hti6d.mongodb.net/Library?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology: true})
     .then( () => {
         app.listen(5000)
+        console.log("connected");
     }).catch(()=>{
 
         console.log("Unable to connect to mongoDB")
