@@ -5,13 +5,6 @@ const Book = require('../models/book')
 
 
 
-
-// const index = (req,res,next)=>{
-//
-//     res.status(200).json({books: DUMMY_DB})
-// }
-
-
 async function index(req,res,next) {
 
     try{
@@ -79,6 +72,9 @@ const store = async (req,res) =>{
     // const title = req.body.title
     // const description = req.body.description
 
+
+
+
    const error =  validationResult(req)
 
     if(!error.isEmpty()){
@@ -95,8 +91,9 @@ const store = async (req,res) =>{
 
     try{
         await newBook.save()
+
     }catch (e) {
-        return res.status(422).json({message:"Data not saved!"})
+        return res.status(500).json({message:e})
     }
 
 
