@@ -80,8 +80,9 @@ const update= async (req,res) =>{
     const author_id = req.params.author_id
     const { email,phone } = req.body
 
+    let author;
     try{
-        const author = await Author.findById(author_id)
+         author = await Author.findById(author_id)
 
     }catch (e) {
         return res.status(422).json({message:e})
@@ -109,8 +110,11 @@ const deleteAuthor = async (req,res) =>{
 
     const author_id = req.params.author_id
 
+
+    let author;
+
     try{
-        const author = await Author.findById(author_id)
+         author = await Author.findById(author_id)
     }catch (e) {
         return res.status(422).json({message:e})
     }
