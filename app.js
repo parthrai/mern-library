@@ -27,7 +27,7 @@ app.use('/api/books',booksRoutes)
 app.use('/api/authors',authorRoutes)
 
 
-mongoose.connect("mongodb+srv://test-user:test-pass@cluster0-hti6d.mongodb.net/Library?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology: true})
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-hti6d.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`,{useNewUrlParser:true, useUnifiedTopology: true})
     .then( () => {
         app.listen(process.env.PORT)
         console.log("connected");
