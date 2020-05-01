@@ -29,8 +29,9 @@ app.use('/api/authors',authorRoutes)
 
 mongoose.connect("mongodb+srv://test-user:test-pass@cluster0-hti6d.mongodb.net/Library?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology: true})
     .then( () => {
-        app.listen(80)
+        app.listen(process.env.PORT)
         console.log("connected");
+        console.log(process.env.name)
     }).catch(()=>{
 
         console.log("Unable to connect to mongoDB")
