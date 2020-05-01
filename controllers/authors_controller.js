@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator')
 
 const Author = require('../models/author')
+const Book = require('../models/book')
 
 
 // Get list of all the authors
@@ -118,6 +119,17 @@ const deleteAuthor = async (req,res) =>{
     }catch (e) {
         return res.status(422).json({message:e})
     }
+
+
+    try{
+        await Book.remove({author_id:author_id})
+
+    }catch (e) {
+        return res.status(422).json({message:"Unable to delete books"})
+
+    }
+
+
 
     try{
         await author.remove()

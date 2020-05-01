@@ -67,6 +67,10 @@ const store = async (req,res) =>{
 
     const {  name, description, author_id} = req.body //LEFT HAND SIDE IS CALLED OBJECT DESTRUCTURING
 
+
+
+
+
     let author;
     try{
       author = await Author.findById(author_id)
