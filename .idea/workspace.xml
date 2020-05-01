@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cbc65e9a-7b06-40f9-8165-863c110cdaaf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authors_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authors_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/books_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/books_controller.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/books_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
+            <state relative-caret-position="2565">
               <caret line="171" column="23" lean-forward="true" selection-start-line="171" selection-end-line="172" />
             </state>
           </provider>
@@ -86,7 +84,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/authors_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
+            <state relative-caret-position="167">
               <caret line="124" column="47" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="47" />
             </state>
           </provider>
@@ -140,7 +138,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,6 +164,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -217,17 +215,19 @@
       <workItem from="1588120421582" duration="26000" />
       <workItem from="1588198303235" duration="3213000" />
       <workItem from="1588284927222" duration="17000" />
-      <workItem from="1588285272738" duration="2133000" />
+      <workItem from="1588285272738" duration="2640000" />
+      <workItem from="1588293451128" duration="23000" />
+      <workItem from="1588353080494" duration="396000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45766000" />
+    <option name="totallyTimeSpent" value="46692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1648" height="799" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21204671" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21204671" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -239,7 +239,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.21782178" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.21782178" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -294,6 +294,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/books_routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -301,6 +308,13 @@
             <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/books_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2565">
+          <caret line="171" column="23" lean-forward="true" selection-start-line="171" selection-end-line="172" />
         </state>
       </provider>
     </entry>
@@ -325,23 +339,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/books_routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/books_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="171" column="23" lean-forward="true" selection-start-line="171" selection-end-line="172" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/authors_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
+        <state relative-caret-position="167">
           <caret line="124" column="47" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="47" />
         </state>
       </provider>
