@@ -46,6 +46,14 @@ const store = async (req,res) =>{
 
     const {  name, email, phone} = req.body //LEFT HAND SIDE IS CALLED OBJECT DESTRUCTURING
 
+    const userDetails = {
+        'details':{
+            name:name,
+            email:name,
+            phone:name,
+        }
+    }
+
 
     const error =  validationResult(req)
 

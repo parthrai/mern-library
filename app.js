@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const booksRoutes = require('./routes/books_routes')
 const authorRoutes = require('./routes/authors_routes')
 
+//const withAuth = require('./middlewares/Auth')
+
 const app = express();
 
 //Routes
@@ -23,11 +25,12 @@ app.use((req,res,next)=>{
 
 })
 
+
 app.use('/api/books',booksRoutes)
 app.use('/api/authors',authorRoutes)
 
 
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-hti6d.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`,{useNewUrlParser:true, useUnifiedTopology: true})
+mongoose.connect(`mongodb+srv://test-user:test-pass@cluster0-hti6d.mongodb.net/Library?retryWrites=true&w=majority`,{useNewUrlParser:true, useUnifiedTopology: true})
     .then( () => {
         app.listen(process.env.PORT)
         console.log("connected");
